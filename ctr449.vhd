@@ -12,12 +12,14 @@ PORT(RESET,CLK_10M,XDSD,DEM0,DEM1 : IN std_logic;
 		DZFR : IN std_logic;
 		PHA : IN std_logic;
 		PHB : IN std_logic;
+		MUTE_IN : IN std_logic;
 		CSN,CCLK,CDTI : OUT std_logic;
 		MCLK,SCK,BCLK,DATA,LRCK,ENCLK_22M,ENCLK_24M : OUT std_logic;
 		LED_DSD : OUT std_logic;
 		LED_PCM : OUT std_logic;
 		LED_96K : OUT std_logic;
-		MUTE : OUT std_logic);
+		MUTE : OUT std_logic;
+		RMUTE : OUT std_logic);
 END ctr449;
 
 ARCHITECTURE RTL OF ctr449 IS
@@ -86,6 +88,7 @@ begin
 	
 	iMUTE <= RESET and DZFR;
 	MUTE <= iMUTE when RESET = '0' else 'Z';
+	RMUTE <= '0' when RESET = '0' else '1';
 
 
 end RTL;
